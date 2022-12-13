@@ -1,5 +1,6 @@
 import 'package:chat_notification/models/auth_form_data.dart';
 import 'package:flutter/material.dart';
+import 'package:validatorless/validatorless.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -31,18 +32,34 @@ class _AuthFormState extends State<AuthForm> {
                       decoration: const InputDecoration(labelText: 'Nome'),
                       initialValue: _authFormData.name,
                       onChanged: (name) => _authFormData.name = name,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Nome é obrigatório'),
+                        Validatorless.min(
+                          3,
+                          'Nome precisa ter no mínimo 3 caractéres',
+                        ),
+                      ]),
                     )
                   : const SizedBox.shrink(),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'E-mail'),
                 initialValue: _authFormData.email,
                 onChanged: (email) => _authFormData.email = email,
+                validator: Validatorless.multiple([
+                  Validatorless.required('E-mail é obrigatório'),
+                  Validatorless.email('Digite um e-mail válido'),
+                ]),
               ),
               TextFormField(
+                obscureText: true,
                 decoration: const InputDecoration(labelText: 'Senha'),
                 initialValue: _authFormData.password,
                 onChanged: (password) => _authFormData.password = password,
-                obscureText: true,
+                validator: Validatorless.multiple([
+                  Validatorless.required('Senha é obrigatória'),
+                  Validatorless.min(
+                      6, 'A senha deve conter pelo menos 6 caractéres'),
+                ]),
               ),
               const SizedBox(height: 12),
               ElevatedButton(
