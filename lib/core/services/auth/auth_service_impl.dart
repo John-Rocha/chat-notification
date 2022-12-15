@@ -35,7 +35,7 @@ class AuthServiceImpl implements AuthService {
       id: Random().nextDouble().toString(),
       name: name,
       email: email,
-      imageURL: image?.path ?? '/assets/images/...',
+      imageURL: image?.path ?? 'assets/images/avatar.png',
     );
     debugPrint(newUser.toString());
     _users.putIfAbsent(email, () => newUser);
