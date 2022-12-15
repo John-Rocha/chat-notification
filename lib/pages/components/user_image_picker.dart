@@ -53,7 +53,12 @@ class _UserImagePickerState extends State<UserImagePicker> {
                 Icons.image,
                 color: Theme.of(context).primaryColor,
               ),
+<<<<<<< HEAD
               const Text('Adicionar Imagem')
+=======
+              SizedBox(width: 10),
+              Text('Adicionar Imagem')
+>>>>>>> a13c5f7844583c4837edc425e3205a1a7d2c9111
             ],
           ),
         )
