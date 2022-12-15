@@ -1,5 +1,5 @@
 import 'package:chat_notification/firebase_options.dart';
-import 'package:chat_notification/pages/auth_page.dart';
+import 'package:chat_notification/pages/auth_or_app_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const AuthPage(),
+      home: const AuthOrAppPage(),
     );
   }
 }
