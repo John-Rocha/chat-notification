@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:chat_notification/core/models/chat_user.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'dart:io';
 
 import './auth_service.dart';
 
 class AuthServiceImpl implements AuthService {
-  static Map<String, ChatUser> _users = {};
+  static final Map<String, ChatUser> _users = {};
   static ChatUser? _currentUser;
   static MultiStreamController<ChatUser?>? _controller;
   static final _userStream = Stream<ChatUser?>.multi((controller) {
@@ -36,7 +37,7 @@ class AuthServiceImpl implements AuthService {
       email: email,
       imageURL: image?.path ?? '/assets/images/...',
     );
-
+    debugPrint(newUser.toString());
     _users.putIfAbsent(email, () => newUser);
     _updateUser(newUser);
   }

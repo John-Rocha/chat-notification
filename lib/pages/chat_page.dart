@@ -11,7 +11,7 @@ class ChatPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Chat Page'),
+            const Text('Chat Page'),
             TextButton(
               onPressed: () => AuthServiceImpl().logout(),
               child: const Text('Logout'),
