@@ -1,5 +1,5 @@
-import 'package:chat_notification/models/auth_form_data.dart';
-import 'package:chat_notification/pages/components/auth_form.dart';
+import 'package:chat_notification/core/models/auth_form_data.dart';
+import 'package:chat_notification/components/auth_form.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:chat_notification/pages/components/user_image_picker.dart';
+import 'package:chat_notification/components/user_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
-import 'package:chat_notification/models/auth_form_data.dart';
+import 'package:chat_notification/core/models/auth_form_data.dart';
 
 class AuthForm extends StatefulWidget {
   final void Function(AuthFormData authFormData) onSubmit;
