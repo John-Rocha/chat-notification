@@ -1,9 +1,15 @@
-import 'package:chat_notification/models/auth_form_data.dart';
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
+import 'package:chat_notification/models/auth_form_data.dart';
+
 class AuthForm extends StatefulWidget {
-  const AuthForm({super.key});
+  final void Function(AuthFormData authFormData) onSubmit;
+
+  const AuthForm({
+    Key? key,
+    required this.onSubmit,
+  }) : super(key: key);
 
   @override
   State<AuthForm> createState() => _AuthFormState();
@@ -15,12 +21,19 @@ class _AuthFormState extends State<AuthForm> {
 
   void _submit() {
     final formValidate = _formKey.currentState?.validate() ?? false;
+
+    if (!formValidate) return;
+
+    widget.onSubmit(_authFormData);
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(20),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
