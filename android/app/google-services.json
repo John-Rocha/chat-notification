@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "342647219806",
+    "project_id": "chat-b3512",
+    "storage_bucket": "chat-b3512.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342647219806:android:15fb7705947126e4d336cf",
+        "android_client_info": {
+          "package_name": "br.com.chatnotificationrochajohnathan.chat_notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342647219806-pcubbe4c6tmvadg7stbo1qlotv84ch76.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.chatnotificationrochajohnathan.chat_notification",
+            "certificate_hash": "6f32d51f8ee36dae13c9fde0a7ccc456be5a9b9f"
+          }
+        },
+        {
+          "client_id": "342647219806-1ora5a8s9pt4snfk1e4a8ia1l8pde7ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbv4rGiKPj_1OjSprcQCA_GpeYSVA7pjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342647219806-1ora5a8s9pt4snfk1e4a8ia1l8pde7ug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
