@@ -1,6 +1,6 @@
-import 'package:chat_notification/core/models/auth_form_data.dart';
 import 'package:chat_notification/components/auth_form.dart';
-import 'package:chat_notification/core/services/auth/auth_service_impl.dart';
+import 'package:chat_notification/core/models/auth_form_data.dart';
+import 'package:chat_notification/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
@@ -18,13 +18,13 @@ class _AuthPageState extends State<AuthPage> {
       setState(() => _isLoading = true);
       if (authFormData.isLogin) {
         // Login
-        await AuthServiceImpl().login(
+        await AuthService().login(
           authFormData.email,
           authFormData.password,
         );
       } else {
         // Signup
-        await AuthServiceImpl().signup(
+        await AuthService().signup(
           authFormData.name,
           authFormData.email,
           authFormData.password,

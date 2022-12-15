@@ -1,4 +1,4 @@
-import 'package:chat_notification/core/services/auth/auth_service_impl.dart';
+import 'package:chat_notification/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -13,7 +13,7 @@ class ChatPage extends StatelessWidget {
           children: [
             const Text('Chat Page'),
             TextButton(
-              onPressed: () => AuthServiceImpl().logout(),
+              onPressed: () => AuthService().logout(),
               child: const Text('Logout'),
             )
           ],

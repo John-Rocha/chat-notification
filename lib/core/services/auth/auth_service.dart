@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chat_notification/core/models/chat_user.dart';
+import 'package:chat_notification/core/services/auth/auth_service_impl.dart';
 
 abstract class AuthService {
   ChatUser? get currentUser;
@@ -18,4 +19,8 @@ abstract class AuthService {
     String password,
   );
   Future<void> logout();
+
+  factory AuthService() {
+    return AuthServiceImpl();
+  }
 }

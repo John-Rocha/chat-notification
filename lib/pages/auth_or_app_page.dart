@@ -1,5 +1,5 @@
 import 'package:chat_notification/core/models/chat_user.dart';
-import 'package:chat_notification/core/services/auth/auth_service_impl.dart';
+import 'package:chat_notification/core/services/auth/auth_service.dart';
 import 'package:chat_notification/pages/auth_page.dart';
 import 'package:chat_notification/pages/chat_page.dart';
 import 'package:chat_notification/pages/loading_page.dart';
@@ -12,7 +12,7 @@ class AuthOrAppPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<ChatUser?>(
-        stream: AuthServiceImpl().userChanges,
+        stream: AuthService().userChanges,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingPage();
