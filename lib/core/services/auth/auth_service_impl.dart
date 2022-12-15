@@ -9,13 +9,22 @@ import 'dart:io';
 import './auth_service.dart';
 
 class AuthServiceImpl implements AuthService {
-  static final Map<String, ChatUser> _users = {};
+  static final _defaultChatUser = ChatUser(
+    id: '1',
+    name: 'John',
+    email: 'johnathanrocha@gmail.com',
+    password: '123456',
+    imageURL: 'assets/images/avatar.png',
+  );
+
+  static final Map<String, ChatUser> _users = {
+    _defaultChatUser.email: _defaultChatUser,
+  };
   static ChatUser? _currentUser;
   static MultiStreamController<ChatUser?>? _controller;
   static final _userStream = Stream<ChatUser?>.multi((controller) {
     _controller = controller;
-    _currentUser = null;
-    controller.add(null);
+    _updateUser(_defaultChatUser);
   });
 
   @override
@@ -35,6 +44,7 @@ class AuthServiceImpl implements AuthService {
       id: Random().nextDouble().toString(),
       name: name,
       email: email,
+      password: password,
       imageURL: image?.path ?? 'assets/images/avatar.png',
     );
     debugPrint(newUser.toString());
