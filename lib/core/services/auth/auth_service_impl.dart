@@ -5,8 +5,11 @@ import 'dart:io';
 import './auth_service.dart';
 
 class AuthServiceImpl implements AuthService {
+  static Map<String, ChatUser> _users = {};
+  static ChatUser? _currentUser;
+
   @override
-  ChatUser? get currentUser => null;
+  ChatUser? get currentUser => _currentUser;
 
   @override
   Stream<ChatUser?> get userChanges => throw UnimplementedError();
