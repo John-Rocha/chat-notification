@@ -10,4 +10,9 @@ class ChatUser {
     required this.email,
     required this.imageURL,
   });
+
+  @override
+  String toString() {
+    return 'ChatUser(id: $id, name: $name, email: $email, imageURL: $imageURL)';
+  }
 }
