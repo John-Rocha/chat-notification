@@ -8,6 +8,5 @@ class NewMessage extends StatelessWidget {
     return const Center(
       child: Text('Nova Mensagen'),
     );
-    ;
   }
 }
