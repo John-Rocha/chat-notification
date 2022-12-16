@@ -39,6 +39,7 @@ dependencies:
   validatorless: ^1.2.3
   firebase_core: ^2.4.0
   image_picker: ^0.8.6
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
