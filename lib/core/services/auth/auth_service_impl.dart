@@ -13,7 +13,6 @@ class AuthServiceImpl implements AuthService {
     id: '1',
     name: 'John',
     email: 'johnathanrocha@gmail.com',
-    password: '123456',
     imageURL: 'assets/images/avatar.png',
   );
 
@@ -44,7 +43,6 @@ class AuthServiceImpl implements AuthService {
       id: Random().nextDouble().toString(),
       name: name,
       email: email,
-      password: password,
       imageURL: image?.path ?? 'assets/images/avatar.png',
     );
     debugPrint(newUser.toString());
