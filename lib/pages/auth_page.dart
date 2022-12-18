@@ -17,13 +17,11 @@ class _AuthPageState extends State<AuthPage> {
     try {
       setState(() => _isLoading = true);
       if (authFormData.isLogin) {
-        // Login
         await AuthService().login(
           authFormData.email,
           authFormData.password,
         );
       } else {
-        // Signup
         await AuthService().signup(
           authFormData.name,
           authFormData.email,
@@ -32,7 +30,7 @@ class _AuthPageState extends State<AuthPage> {
         );
       }
     } catch (e) {
-      // Tratar erro
+      //TODO: Tratar erro
     } finally {
       setState(() => _isLoading = false);
     }
