@@ -41,7 +41,10 @@ class ChatPage extends StatelessWidget {
           Expanded(
             child: Messages(),
           ),
-          NewMessage(),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: NewMessage(),
+          ),
         ],
       )),
     );
