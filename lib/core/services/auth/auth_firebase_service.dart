@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:chat_notification/core/models/chat_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import './auth_service.dart';
 
@@ -39,8 +40,15 @@ class AuthFirebaseService implements AuthService {
 
     if (credential.user == null) return;
 
+    // 1. Upload da foto do usuário
+    final imageName = '${credential.user!.uid}.jpg';
+    final photoURL = await _uploadUserImage(image, imageName);
+
+    // 2. Atualizar os atributos do usuário
     credential.user?.updateDisplayName(name);
-    // credential.user?.updatePhotoURL(photoURL);
+    credential.user?.updatePhotoURL(photoURL);
+
+    // 3. Salvar dados no banco de dados
   }
 
   @override
@@ -66,5 +74,16 @@ class AuthFirebaseService implements AuthService {
       email: user.email!,
       imageURL: user.photoURL ?? 'assets/images/avatar.png',
     );
+  }
+
+  Future<String?> _uploadUserImage(File? image, String imageName) async {
+    if (image == null) {
+      return null;
+    }
+
+    final storage = FirebaseStorage.instance;
+    final imageRef = storage.ref().child('user_images').child(imageName);
+    await imageRef.putFile(image).whenComplete(() {});
+    return await imageRef.getDownloadURL();
   }
 }
