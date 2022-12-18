@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:chat_notification/core/models/chat_user.dart';
-import 'package:chat_notification/core/services/auth/auth_service_impl.dart';
+import 'package:chat_notification/core/services/auth/auth_firebase_service.dart';
 
 abstract class AuthService {
   ChatUser? get currentUser;
@@ -21,6 +21,6 @@ abstract class AuthService {
   Future<void> logout();
 
   factory AuthService() {
-    return AuthServiceImpl();
+    return AuthFirebaseService();
   }
 }
