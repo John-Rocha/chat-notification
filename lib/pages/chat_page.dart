@@ -14,7 +14,6 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('App Chat'),
-        centerTitle: true,
         actions: [
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
@@ -67,17 +66,26 @@ class ChatPage extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-          child: Column(
-        children: const [
-          Expanded(
-            child: Messages(),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: NewMessage(),
-          ),
-        ],
-      )),
+        child: Column(
+          children: const [
+            Expanded(
+              child: Messages(),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: NewMessage(),
+            ),
+          ],
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Provider.of<ChatNotificationService>(context, listen: false).add(
+      //       ChatNotification(title: 'Teste', body: 'Teste notificação'),
+      //     );
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }
