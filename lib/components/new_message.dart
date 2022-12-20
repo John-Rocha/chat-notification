@@ -23,6 +23,12 @@ class _NewMessageState extends State<NewMessage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _messageController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
@@ -33,11 +39,6 @@ class _NewMessageState extends State<NewMessage> {
               setState(() {
                 _message = message;
               });
-            },
-            onSubmitted: (_) {
-              if (_message.trim().isNotEmpty) {
-                _sendMessage();
-              }
             },
             decoration: const InputDecoration(
               labelText: 'Enviar mensagem...',

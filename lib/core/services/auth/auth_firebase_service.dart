@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:chat_notification/core/models/chat_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import './auth_service.dart';
@@ -33,27 +34,35 @@ class AuthFirebaseService implements AuthService {
     String password,
     File? image,
   ) async {
-    final auth = FirebaseAuth.instance;
-    final credential = await auth.createUserWithEmailAndPassword(
+    final signup = await Firebase.initializeApp(
+      name: 'userSignup',
+      options: Firebase.app().options,
+    );
+
+    final auth = FirebaseAuth.instanceFor(app: signup);
+
+    UserCredential credential = await auth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
 
-    if (credential.user == null) return;
+    if (credential.user != null) {
+      // 1. Upload da foto do usuário
+      final imageName = '${credential.user!.uid}.jpg';
+      final photoURL = await _uploadUserImage(image, imageName);
 
-    // 1. Upload da foto do usuário
-    final imageName = '${credential.user!.uid}.jpg';
-    final photoURL = await _uploadUserImage(image, imageName);
+      // 2. Atualizar os atributos do usuário
+      await credential.user?.updateDisplayName(name);
+      await credential.user?.updatePhotoURL(photoURL);
 
-    // 2. Atualizar os atributos do usuário
-    await credential.user?.updateDisplayName(name);
-    await credential.user?.updatePhotoURL(photoURL);
+      await login(email, password);
 
-    // 3. Salvar usuário no banco de dados (NoSQL)
-    await _saveChatUser(_toChatUser(
-      credential.user!,
-      photoURL,
-    ));
+      // 3. Salvar usuário no banco de dados (NoSQL)
+      _currentUser = _toChatUser(credential.user!, name, photoURL);
+      await _saveChatUser(_currentUser!);
+    }
+
+    await signup.delete();
   }
 
   @override
@@ -72,10 +81,10 @@ class AuthFirebaseService implements AuthService {
     FirebaseAuth.instance.signOut();
   }
 
-  static ChatUser _toChatUser(User user, [String? imageURL]) {
+  static ChatUser _toChatUser(User user, [String? name, String? imageURL]) {
     return ChatUser(
       id: user.uid,
-      name: user.displayName ?? user.email!.split('@')[0],
+      name: name ?? user.displayName ?? user.email!.split('@')[0],
       email: user.email!,
       imageURL: imageURL ?? user.photoURL ?? 'assets/images/avatar.png',
     );
