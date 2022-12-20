@@ -1,5 +1,6 @@
 import 'package:chat_notification/components/messages.dart';
 import 'package:chat_notification/components/new_message.dart';
+import 'package:chat_notification/core/models/chat_user.dart';
 import 'package:chat_notification/core/services/auth/auth_service.dart';
 import 'package:chat_notification/core/services/notification/chat_notification_service.dart';
 import 'package:chat_notification/pages/notification_page.dart';
@@ -7,13 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  final ChatUser user;
+
+  const ChatPage({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App Chat'),
+        title: Text(user.name),
         actions: [
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
