@@ -1,3 +1,4 @@
+import 'package:chat_notification/core/services/auth/auth_firebase_service.dart';
 import 'package:chat_notification/core/services/notification/chat_notification_service.dart';
 import 'package:chat_notification/pages/auth_or_app_page.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,17 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => ChatNotificationService(),
-        )
+        ),
       ],
       child: MaterialApp(
         title: 'Chat Notification',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Color.fromARGB(129, 161, 175, 177),
+            brightness: Brightness.dark,
+          ),
         ),
         home: const AuthOrAppPage(),
       ),
